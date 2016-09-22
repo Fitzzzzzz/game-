@@ -103,7 +103,7 @@ int main(){
 	std::string board = "+---+---+---+|   |   |   |+---+---+---+|   |   |   |+---+---+---+|   |   |   |+---+---+---+";	
 	printf("tic-tac-toe(EN):\n");
 	printCheckerBoard(board);
-	while(isDone(p1,p2) == 3){
+	while(isDone(p1,p2) == 3 && !isPeace(exist)){
 		thisplayer = exchangePlayer(playerctrl);
 		printHint(thisplayer);
 		scanf("%d %d",&x,&y);
