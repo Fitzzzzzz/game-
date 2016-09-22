@@ -19,8 +19,8 @@ int exchangePlayer(int playerctrl){
 	return thisplayer;
 }
 void printHint(int player){	
-	std::string p1 = "玩家1请输入棋子坐标：";
-	std::string p2 = "玩家2请输入棋子坐标：";	
+	std::string p1 = "Please input x and y,player 1:";
+	std::string p2 = "Please input x and y,player 2:";	
 	std::string thisplayer;
 	if(player == 1) thisplayer = p1;
 	if(player == 2) thisplayer = p2;	
@@ -52,7 +52,7 @@ void reFreshBoard(std::string &board,int x,int y,int thisplayer,int p[2][4]){
 		}
 	}
 	system("cls");
-	printf("小帅哥快来玩呀:\n");
+	printf("tic-tac-toe(EN):\n");
 	printCheckerBoard(board);
 }
 int isDone(int p1[2][4],int p2[2][4]){
@@ -101,18 +101,18 @@ int main(){
 		}
 	}
 	std::string board = "+---+---+---+|   |   |   |+---+---+---+|   |   |   |+---+---+---+|   |   |   |+---+---+---+";	
-	printf("小帅哥快来玩呀:\n");
+	printf("tic-tac-toe(EN):\n");
 	printCheckerBoard(board);
 	while(isDone(p1,p2) == 3){
 		thisplayer = exchangePlayer(playerctrl);
 		printHint(thisplayer);
 		scanf("%d %d",&x,&y);
 		while(isOverSize(x,y)){
-			printf("大哥，棋盘只有3x3,请重新输入坐标：\n");
+			printf("Please select a significant place:\n");
 			scanf("%d %d",&x,&y);
 		}
 		while(isExist(exist,x,y)){
-			printf("此地有人，请重新输入坐标：");
+			printf("Please select a blank place:\n");
 			scanf("%d %d",&x,&y);
 		}
 		if(thisplayer == 1)	reFreshBoard(board,x,y,thisplayer,p1);		
@@ -126,7 +126,7 @@ int main(){
 		if(winner == 3) printf("#3");
 	}
 	else if (isPeace(exist)){
-		printf("平局了！");
+		printf("It ends in a draw!");
 	}
 	else printf("ERROR:end");
 	
