@@ -1,3 +1,3 @@
 # game-
 A sample of "#" game
-And prectice using GITHUB
+and prectice using GITHUB
