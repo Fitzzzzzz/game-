@@ -64,6 +64,19 @@ int isDone(int p1[2][4],int p2[2][4]){
 	}
 	return 3;
 }
+bool isExist(int exist[3][3],int x,int y){
+	if(exist[x-1][y-1] != 1) exist[x-1][y-1] = 1;
+	else return true;
+	return false;
+}
+bool isPeace(int peace[3][3]){
+	for(int i = 0;i < 3;i++){
+		for(int j = 0;j < 3;j++){
+			if(peace[i][j] != 1) return false;
+		}
+	}
+	return true;
+}
 bool isOverSize(int x,int y){
 	if(x > 3 || x < 1 || y > 3 || y < 1) return true;
 	return false;
@@ -73,6 +86,7 @@ int main(){
 	int playerctrl = 1;
 	int thisplayer,winner;
 	int p1[2][4],p2[2][4];
+	int exist[3][3]; 
 	for(int i = 0;i < 2;i++){
 		for(int j = 0;j < 4;j++){
 			p1[i][j] = 0;
@@ -90,15 +104,22 @@ int main(){
 			printf("大哥，棋盘只有3x3,请重新输入坐标：\n");
 			scanf("%d %d",&x,&y);
 		}
+		while(isExist(exist,x,y)){
+			printf("此地有人，请重新输入坐标：");
+			scanf("%d %d",&x,&y);
+		}
 		if(thisplayer == 1)	reFreshBoard(board,x,y,thisplayer,p1);		
 		if(thisplayer == 2) reFreshBoard(board,x,y,thisplayer,p2);
 		playerctrl++;
-	}
-	system("cls");		
+	}		
 	winner = isDone(p1,p2);
-	if(winner == 1) printf("GAME OVER! #1 win!");
-	if(winner == 2) printf("GAME OVER! #2 win!");
-	if(winner == 3) printf("#3");
+	if(!isPeace(exist)){
+		if(winner == 1) printf("GAME OVER! #1 win!");
+		if(winner == 2) printf("GAME OVER! #2 win!");
+		if(winner == 3) printf("#3");
+	}
+	else printf("平局了！");
+	
 	return 0;
 	
 } 
