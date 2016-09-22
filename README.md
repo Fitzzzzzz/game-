@@ -1,2 +1,3 @@
 # game-
-A simple # game
+A sample of "#" game
+And prectice using GITHUB
