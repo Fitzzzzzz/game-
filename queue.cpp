@@ -6,18 +6,18 @@ using namespace std;
 typedef struct index{
 	int NEEDTIME;	
 	int RESTTIME;
-	int STATUS;//0:Íê³É,1:ÕıÔÚ,3:µÈ´ı
+	int STATUS;//0:ÃÃªÂ³Ã‰,1:Ã•Ã½Ã”Ãš,3:ÂµÃˆÂ´Ã½
 	string NAME; 
 }PCB;
 queue<PCB> q1,q2,q3;
 int q_time[3]; 
-int p_count1 = 1;
-int p_count2 = 1;
-int p_count3 = 1;
+char p_count1 = '1';
+char p_count2 = '1';
+char p_count3 = '1';
 
 void printHint(){
-	printf("\n********************************************Çë°´ÌáÊ¾ÊäÈë*********************************************\n");
-	printf("\n 1 : ÔÚ×î¸ß¼¶µÈ´ı¶ÓÁĞÖĞ¼ÓÈë½ø³Ì; 2 : ÔÚÖĞ¼¶µÈ´ı¶ÓÁĞÖĞ¼ÓÈë½ø³Ì; 3 : ÔÚ×îµÍ¼¶µÈ´ı¶ÓÁĞÖĞ¼ÓÈë½ø³Ì; 4 : Ö´ĞĞ\n"); 
+	printf("\n********************************************è¯·æŒ‰æç¤ºè¾“å…¥*********************************************\n");
+	printf("\n 1 : åœ¨æœ€é«˜çº§ç­‰å¾…é˜Ÿåˆ—ä¸­æ’å…¥è¿›ç¨‹; 2 : åœ¨ä¸­çº§ç­‰å¾…é˜Ÿåˆ—ä¸­æ’å…¥è¿›ç¨‹; 3 : åœ¨æœ€ä½çº§ç­‰å¾…é˜Ÿåˆ—ä¸­æ’å…¥è¿›ç¨‹; 4 : æ‰§è¡Œ\n"); 
 }
 void run(){
 	while(!q1.empty()){
@@ -59,30 +59,30 @@ void initPCB(int qNumber){
 	PCB tem;
 	
 	int flag = qNumber;
-	//printf("\nÇëÊäÈë½ø³ÌÃû×Ö£¬»Ø³µ½áÊø\n");
+	//printf("\nÃ‡Ã«ÃŠÃ¤ÃˆÃ«Â½Ã¸Â³ÃŒÃƒÃ»Ã—Ã–Â£Â¬Â»Ã˜Â³ÂµÂ½Ã¡ÃŠÃ¸\n");
 	//scanf("%s",&tem.NAME);
-	printf("\nÇëÊäÈë¸Ã½ø³ÌÖ´ĞĞËùĞèÒªÊ±¼ä£¬»Ø³µ½áÊø\n");
+	printf("\nè¯·è¾“å…¥è¯¥è¿›ç¨‹æ‰§è¡Œæ‰€éœ€è¦æ—¶é—´ï¼Œå›è½¦ç»“æŸ\n");
 	scanf("%d",&tem.NEEDTIME);
 	tem.RESTTIME = tem.NEEDTIME;
 	if(flag == 1){
 		tem.NAME = "process ";
 		tem.NAME += (char)p_count1;
-		tem.NAME += "in queue";
-		tem.NAME += (char)flag;
+		tem.NAME += " in queue";
+		tem.NAME += "1";
 		p_count1++;
 	}
 	if(flag == 2){
 		tem.NAME = "process ";
 		tem.NAME += (char)p_count2;
-		tem.NAME += "in queue";
-		tem.NAME += (char)flag;
+		tem.NAME += " in queue";
+		tem.NAME += "2";
 		p_count2++;
 	}
 	if(flag == 3){
 		tem.NAME = "process ";
 		tem.NAME += (char)p_count3;
-		tem.NAME += "in queue";
-		tem.NAME += (char)flag;
+		tem.NAME += " in queue";
+		tem.NAME += "3";
 		p_count3++;
 	}
 	switch(flag){
@@ -101,7 +101,7 @@ void insertProcess(int flag){
 }
 void initReadyQueue(){
 	int operationCode;
-	printf("\n******************************************ÇëÒÀ´Î·ÖÅäÊ±¼äÆ¬*******************************************\n");
+	printf("\n******************************************è¯·ä¾æ¬¡åˆ†é…æ—¶é—´ç‰‡*******************************************\n");
 	scanf("%d %d %d",&q_time[0],&q_time[1],&q_time[2]); 
 	printHint();
 	scanf("%d",&operationCode);
@@ -112,7 +112,7 @@ void initReadyQueue(){
 	}
 }
 int main(){	
-	printf("****************************************¶à¼¶·´À¡¶ÓÁĞµ÷¶ÈËã·¨*****************************************\n");
+	printf("****************************************å¤šçº§åé¦ˆé˜Ÿåˆ—è°ƒåº¦ç®—æ³•*****************************************\n");
 	printHint();
 	initReadyQueue();
 	run();
