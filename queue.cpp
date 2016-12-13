@@ -6,7 +6,7 @@ using namespace std;
 typedef struct index{
 	int NEEDTIME;	
 	int RESTTIME;
-	int STATUS;//0:Íê³É,1:ÕýÔÚ,3:µÈ´ý
+	char TIMES;
 	string NAME; 
 }PCB;
 queue<PCB> q1,q2,q3;
@@ -22,7 +22,11 @@ void printHint(){
 void run(){
 	while(!q1.empty()){
 		if(q1.front().RESTTIME > q_time[0]){
-			q1.front().RESTTIME = q1.front().RESTTIME - q_time[0];			
+			q1.front().RESTTIME = q1.front().RESTTIME - q_time[0];
+			q1.front().TIMES++;
+			q1.front().NAME += " #";
+			q1.front().NAME += (char)q1.front().TIMES;
+			printf("%s\n",q1.front().NAME.c_str());			
 			q2.push(q1.front());
 			q1.pop();			
 		}
@@ -33,7 +37,11 @@ void run(){
 	}
 	while(!q2.empty()){
 		if(q2.front().RESTTIME > q_time[1]){
-			q2.front().RESTTIME = q2.front().RESTTIME - q_time[1];			
+			q2.front().RESTTIME = q2.front().RESTTIME - q_time[1];
+			q2.front().TIMES++;
+			q2.front().NAME += " #";
+			q2.front().NAME += (char)q2.front().TIMES;
+			printf("%s\n",q2.front().NAME.c_str());						
 			q3.push(q2.front());
 			q2.pop();			
 		}
@@ -48,16 +56,23 @@ void run(){
 //			q2.push(q1.front());
 //			q1.pop();			
 //		}
-//		else{
+		if(q3.front().TIMES != '0'){
+			q3.front().TIMES++;
+			q3.front().NAME += " #";
+			q3.front().NAME += (char)q3.front().TIMES;
 			printf("%s\n",q3.front().NAME.c_str());
 			q3.pop();
-//		}
+		}
+		else{
+			printf("%s\n",q3.front().NAME.c_str());
+			q3.pop();
+		}
 	}
 }
 
 void initPCB(int qNumber){
-	PCB tem;
-	
+	PCB tem;	
+	tem.TIMES = '0';
 	int flag = qNumber;
 	//printf("\nÇëÊäÈë½ø³ÌÃû×Ö£¬»Ø³µ½áÊø\n");
 	//scanf("%s",&tem.NAME);
