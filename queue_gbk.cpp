@@ -6,14 +6,14 @@ using namespace std;
 typedef struct index{
 	int NEEDTIME;	
 	int RESTTIME;
-	int STATUS;//0:完成,1:正在,3:等待
+	char TIMES;
 	string NAME; 
 }PCB;
 queue<PCB> q1,q2,q3;
 int q_time[3]; 
-int p_count1 = 1;
-int p_count2 = 1;
-int p_count3 = 1;
+char p_count1 = '1';
+char p_count2 = '1';
+char p_count3 = '1';
 
 void printHint(){
 	printf("\n********************************************请按提示输入*********************************************\n");
@@ -22,7 +22,11 @@ void printHint(){
 void run(){
 	while(!q1.empty()){
 		if(q1.front().RESTTIME > q_time[0]){
-			q1.front().RESTTIME = q1.front().RESTTIME - q_time[0];			
+			q1.front().RESTTIME = q1.front().RESTTIME - q_time[0];
+			q1.front().TIMES++;
+			q1.front().NAME += " #";
+			q1.front().NAME += (char)q1.front().TIMES;
+			printf("%s\n",q1.front().NAME.c_str());
 			q2.push(q1.front());
 			q1.pop();			
 		}
@@ -33,7 +37,11 @@ void run(){
 	}
 	while(!q2.empty()){
 		if(q2.front().RESTTIME > q_time[1]){
-			q2.front().RESTTIME = q2.front().RESTTIME - q_time[1];			
+			q2.front().RESTTIME = q2.front().RESTTIME - q_time[1];
+			q2.front().TIMES++;
+			q2.front().NAME += " #";
+			q2.front().NAME += (char)q2.front().TIMES;
+			printf("%s\n",q2.front().NAME.c_str());			
 			q3.push(q2.front());
 			q2.pop();			
 		}
@@ -48,16 +56,23 @@ void run(){
 //			q2.push(q1.front());
 //			q1.pop();			
 //		}
-//		else{
+		if(q3.front().TIMES != '0'){
+			q3.front().TIMES++;
+			q3.front().NAME += " #";
+			q3.front().NAME += (char)q3.front().TIMES;
 			printf("%s\n",q3.front().NAME.c_str());
 			q3.pop();
-//		}
+		}
+		else{
+			printf("%s\n",q3.front().NAME.c_str());
+			q3.pop();
+		}
 	}
 }
 
 void initPCB(int qNumber){
 	PCB tem;
-	
+	tem.TIMES = '0';
 	int flag = qNumber;
 	//printf("\n请输入进程名字，回车结束\n");
 	//scanf("%s",&tem.NAME);
@@ -67,22 +82,22 @@ void initPCB(int qNumber){
 	if(flag == 1){
 		tem.NAME = "process ";
 		tem.NAME += (char)p_count1;
-		tem.NAME += "in queue";
-		tem.NAME += (char)flag;
+		tem.NAME += " in queue";
+		tem.NAME += "1";
 		p_count1++;
 	}
 	if(flag == 2){
 		tem.NAME = "process ";
 		tem.NAME += (char)p_count2;
-		tem.NAME += "in queue";
-		tem.NAME += (char)flag;
+		tem.NAME += " in queue";
+		tem.NAME += "2";
 		p_count2++;
 	}
 	if(flag == 3){
 		tem.NAME = "process ";
 		tem.NAME += (char)p_count3;
-		tem.NAME += "in queue";
-		tem.NAME += (char)flag;
+		tem.NAME += " in queue";
+		tem.NAME += "3";
 		p_count3++;
 	}
 	switch(flag){
