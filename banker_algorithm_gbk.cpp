@@ -17,7 +17,7 @@ void inputRequest(){
 }
 bool safeCheck(){
 	int finishCount = 0;
-	int count = 0;
+	int errorCount = 0;
 	int index = 0;
 	while(finishCount < 5){
 		for(int i = 0;i < 5;i++){
@@ -35,8 +35,8 @@ bool safeCheck(){
 				break;
 			}
 		}
-		count++;
-		if (count > 5) return false;
+		errorCount++;
+		if (errorCount > 5) return false;
 	}
 	return true;
 }
