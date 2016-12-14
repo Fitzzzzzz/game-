@@ -10,9 +10,9 @@ int work[3];
 int safeNum[5];
 
 void inputRequest(){
-	printf("璇疯緭鍏ヨ姹傜殑杩涚▼鍙穃n");
+	printf("请输入请求的进程号：\n");
 	scanf("%d",&processNumber);
-	printf("璇蜂緷娆¤緭鍏ヤ笁绉嶈祫婧愮殑璇锋眰閲廫n");
+	printf("请依次输入请求的资源数：\n");
 	scanf("%d %d %d",&request[0],&request[1],&request[2]);
 }
 bool safeCheck(){
@@ -41,7 +41,7 @@ bool safeCheck(){
 	return true;
 }
 void showRes(){
-	printf("\n瀛樺湪瀹夊叏搴忓垪:\n");
+	printf("\n存在如下安全序列:\n");
 	printf("\t");
 	for (int i = 0; i < 5; ++i)
 	{
@@ -83,7 +83,7 @@ void run(int num){
 				available[2] -= request[2];
 			}
 			else{
-				printf("unsafe\n");
+				printf("不安全，拒绝！\n");
 			}
 		}
 		else{
@@ -112,9 +112,9 @@ void initProcess(){
 
 int main(){
 	initProcess();
+//	safeCheck();
+//	showRes(); 
 	inputRequest();
-	//safeCheck();
-	//showRes(); 
 	run(processNumber-1);
 	return 0;
 }
